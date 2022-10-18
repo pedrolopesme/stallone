@@ -1,7 +1,8 @@
 package main
 
-import "fmt"
+import "github.com/pedrolopesme/stallone/internal/api"
 
 func main() {
-	fmt.Println("Live For Nothing, Or Die For Something.")
+	app := api.NewAPI()
+	app.Run()
 }
