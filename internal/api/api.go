@@ -1,13 +1,24 @@
 package api
 
-import "fmt"
+import (
+	"github.com/pedrolopesme/stallone/internal/api/router"
+)
 
-type Api struct{}
+type Api struct {
+	Router router.Router
+}
 
 func NewAPI() *Api {
-	return &Api{}
+
+	// setup routes
+	appRouter := router.NewRouter()
+
+	return &Api{
+		Router: *appRouter,
+	}
 }
 
 func (a *Api) Run() {
-	fmt.Println("You, me or nobody is gonna hit as hard as life.")
+	router := a.Router
+	router.Echo.Logger.Fatal(router.Echo.Start(":1323"))
 }
